@@ -7,7 +7,7 @@ enyo.kind({
   	
   	{kind: "Control", flex:1, layoutKind: "HFlexLayout", components: [
 	  	{kind: "Scroller", flex: 3, components: [
-	          {content: "Monday"},
+	          {content: "Monday", name:"dayLabel"},
 	          {kind: "VirtualRepeater", name: "mondayList", onSetupRow: "getListItem",
 	          components: [
 	              {kind: "Item", layoutKind: "VFlexLayout", components: [
@@ -36,21 +36,35 @@ enyo.kind({
 		]}
 	]}
   ],
+  
   dayChanged: function(sender) {
-  	
+      var container = this.$.weekDays.children.filter(function filter(x) { return (x.name=="client") } );
+      var days = container[0].children;
+      for(var i=0;i<days.length;i++) {
+          if(days[i] != sender) {
+          	  days[i].setDepressed(false);
+          }
+      }
   }
   ,
   getListItem: function(inSender, inIndex) {
-  list = [["-",
-		 {name:$L("Компьютерная электроника"),
+/*  list = [["-",
+		 {name:"Компьютерная электроника",
 		  teacher:"Виноградов Ю.Н.",
 		  where:"302-18",
 		  type:"L"},
 		 {name:"Системное программирование",
 		  teacher:"Мусина Т.В.",
 		  where:"305-18",
-		  type:"L"}]];
-  	var r = list[0][inIndex];
+		  type:"L"}]];*/
+	var list = this.list;
+	var r;
+	if (!list) {
+		return false;
+	} else {
+		r = list[0][inIndex];
+	}
+  	
   	if (r) {
   	  var title = (inIndex+1)+": ";
   	  var desc = "";

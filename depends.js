@@ -1,4 +1,4 @@
 enyo.depends(
-  "Schedule.js",
-  "css/Schedule.css"
+  "src/Schedule.js",
+  "stylesheets/Schedule.css"
 );
