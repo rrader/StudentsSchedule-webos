@@ -1,0 +1,10 @@
+{
+	"id": "com.antigluk.studentsschedule",
+	"version": "1.0.0",
+	"vendor": "Antigluk",
+	"type": "web",
+	"main": "index.html",
+	"title": "Students Schedule",
+	"icon": "icon.png",
+  	"uiRevision": "2"
+}
