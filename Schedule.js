@@ -3,14 +3,6 @@ enyo.kind({
   kind: enyo.VFlexBox,
   components: [
   
-	{
-	    name: "db",
-	    kind: "onecrayon.Database",
-	    database: 'ext:MyDatabase',
-	    version: "",
-	    debug: false
-	},
-  
   	{kind: "PageHeader", content: "Students Schedule"},
   	
   	{kind: "Control", flex:1, layoutKind: "HFlexLayout", components: [

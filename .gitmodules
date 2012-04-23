@@ -1,3 +1,0 @@
-[submodule "database-webos"]
-	path = database-webos
-	url = git://github.com/onecrayon/database-webos.git
