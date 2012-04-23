@@ -1,0 +1,28 @@
+[
+	{
+		"table": "schedule",
+		"columns": [
+			{ 
+				"column": "rowID",
+				"type": "INTEGER",
+				"constraints": ["PRIMARY KEY"]
+			},
+			{"column": "subject", "type": "INTEGER" },
+			{"column": "day", "type": "INTEGER" }
+		]
+	},
+	{
+		"table": "subjects",
+		"columns": [
+			{
+				"column": "rowID",
+				"type": "INTEGER",
+				"constraints": ["PRIMARY KEY"]
+			},
+			{ "column": "title", "type": "TEXT" }
+			{ "column": "lecturer", "type": "TEXT" }
+			{ "column": "audience", "type": "TEXT" }
+			{ "column": "type", "type": "TEXT" }
+		]
+	}
+]
