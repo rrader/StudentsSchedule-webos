@@ -30,7 +30,7 @@ enyo.kind({
   	{kind: "PageHeader", content: "Students Schedule"},
   	
   	{kind: "Control", flex:1, layoutKind: "HFlexLayout", components: [
-	  	{kind: "Control", flex: 3, components: [
+	  	{kind: "Scroller", flex: 3, components: [
 	  		  {layoutKind: "HFlexLayout", pack:"center", align: "center", components: [
 	          	  {content: "Monday", name:"dayLabel"},
 	          	  {kind:"Button", caption: "edit", onclick:"editClicked"}
