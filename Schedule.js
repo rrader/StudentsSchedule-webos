@@ -22,14 +22,14 @@ enyo.kind({
 			        {content:"1 неделя", onclick: "weekChanged"},
 			        {content:"2 неделя", onclick: "weekChanged"},
 	            ]},
-	            {kind: "RowGroup", name:"weekDays", layoutKind: "VFlexLayout", components: [
-	                {content:"Понедельник", onclick: "dayChanged"},
-	                {content:"Вторник", onclick: "dayChanged"},
-	                {content:"Среда", onclick: "dayChanged"},
-	                {content:"Четверг", onclick: "dayChanged"},
-	                {content:"Пятница", onclick: "dayChanged"},
-	                {content:"Суббота", onclick: "dayChanged"},
-	                {content:"Воскресенье", onclick: "dayChanged"}
+	            {kind: "Group", name:"weekDays", layoutKind: "VFlexLayout", components: [
+	                {kind: "Button", caption: "Понедельник", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Вторник", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Среда", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Четверг", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Пятница", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Суббота", onclick: "dayChanged", toggling: true},
+	                {kind: "Button", caption: "Воскресенье", onclick: "dayChanged", toggling: true}
 	            ]}
 	        ]}
 		]}
