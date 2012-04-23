@@ -3,20 +3,42 @@ enyo.kind({
   kind: enyo.VFlexBox,
   components: [
   	{kind: "PageHeader", content: "Students Schedule"},
-  	{kind: "Scroller", flex: 1, components: [
-  		  {kind: "Item", layoutKind: "VFlexLayout", components: [
-                  {content: "Monday"},
-          ]},
-          {name: "mondayList", id:0, kind: "VirtualRepeater", onSetupRow: "getListItem",
-          components: [
-              {kind: "Item", layoutKind: "VFlexLayout", components: [
-                  {name: "title", kind: "Divider"},
-                  {name: "description"}
-              ]}
-          ]}
-      ]}
+  	
+  	{kind: "Control", flex:1, layoutKind: "HFlexLayout", components: [
+	  	{kind: "Scroller", flex: 3, components: [
+	          {content: "Monday"},
+	          {kind: "VirtualRepeater", name: "mondayList", onSetupRow: "getListItem",
+	          components: [
+	              {kind: "Item", layoutKind: "VFlexLayout", components: [
+	                  {name: "title", kind: "Divider"},
+	                  {name: "description"}
+	              ]}
+	          ]}
+	      ]
+	    },
+	    {kind: "Control", flex:1, layoutKind: "VFlexLayout", components: [
+	        {kind:"RowGroup", caption: "Выбор дня", components: [
+			    {kind: "RadioToolButtonGroup", name:"weekIndex", components: [
+			        {content:"1 неделя", onclick: "weekChanged"},
+			        {content:"2 неделя", onclick: "weekChanged"},
+	            ]},
+	            {kind: "RowGroup", name:"weekDays", layoutKind: "VFlexLayout", components: [
+	                {content:"Понедельник", onclick: "dayChanged"},
+	                {content:"Вторник", onclick: "dayChanged"},
+	                {content:"Среда", onclick: "dayChanged"},
+	                {content:"Четверг", onclick: "dayChanged"},
+	                {content:"Пятница", onclick: "dayChanged"},
+	                {content:"Суббота", onclick: "dayChanged"},
+	                {content:"Воскресенье", onclick: "dayChanged"}
+	            ]}
+	        ]}
+		]}
+	]}
   ],
-  
+  dayChanged: function(sender) {
+  	
+  }
+  ,
   getListItem: function(inSender, inIndex) {
   list = [["-",
 		 {name:$L("Компьютерная электроника"),
@@ -29,13 +51,17 @@ enyo.kind({
 		  type:"L"}]];
   	var r = list[0][inIndex];
   	if (r) {
+  	  var title = (inIndex+1)+": ";
+  	  var desc = "";
   	  if (r == "-") {
-	  	  this.$.title.setCaption("");
-	      this.$.description.setContent("free");
+	  	  title += "";
+	  	  desc += "Нет пары";
   	  } else {
-	      this.$.title.setCaption(r.name);
-	      this.$.description.setContent(r.where+" "+r.teacher);
+	      title += r.name;
+	      desc += r.where + " " + r.teacher;
       }
+      this.$.title.setCaption(title);
+	  this.$.description.setContent(desc);
       return true;
   	}
   	return false;
