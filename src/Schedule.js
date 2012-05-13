@@ -2,7 +2,7 @@ enyo.kind({
   name: "RRader.Schedule",
   kind: enyo.VFlexBox,
   components: [
-    {kind:"Image", src:"images/bg.jpg", width:"1024px", height:"768px", style:"position:absolute;z-index:-1;"},
+    {kind:"Image", src:"resources/bgr.jpg", width:"1024px", height:"768px", style:"position:absolute;z-index:-1;opacity:0.3;"},
     {kind: "ApplicationEvents", onLoad: "onLoad"},
     {kind: "Popup", name:"editPopup", components: [
         {name:"editDayLabel"},
