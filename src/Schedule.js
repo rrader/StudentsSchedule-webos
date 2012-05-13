@@ -12,7 +12,7 @@ enyo.kind({
 	                  {name: "editDescription"}
 	              ]}
 	          ]},
-	    {kind: "Button", caption:"Add", onclick:"editAddClick"}
+	    {kind: "IconButton", icon:"resources/add.png", onclick:"editAddClick"}
     ]},
     
     {kind: "Popup", name:"editItemPopup", components: [
@@ -33,7 +33,7 @@ enyo.kind({
 	  	{kind: "Scroller", flex: 3, components: [
 	  		  {layoutKind: "HFlexLayout", pack:"center", align: "center", components: [
 	          	  {content: "Monday", name:"dayLabel"},
-	          	  {kind:"Button", caption: "edit", onclick:"editClicked"}
+	          	  {kind:"IconButton", icon:"resources/edit.png", onclick:"editClicked"}
 	          ]},
 	          {kind: "VirtualRepeater", name: "subjectsList", onSetupRow: "getListItem",
 	          components: [
