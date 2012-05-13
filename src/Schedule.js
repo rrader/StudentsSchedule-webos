@@ -2,17 +2,23 @@ enyo.kind({
   name: "RRader.Schedule",
   kind: enyo.VFlexBox,
   components: [
+    {kind:"Image", src:"images/bg.jpg", width:"1024px", height:"768px", style:"position:absolute;z-index:-1;"},
     {kind: "ApplicationEvents", onLoad: "onLoad"},
     {kind: "Popup", name:"editPopup", components: [
         {name:"editDayLabel"},
-        {kind: "VirtualRepeater", name: "editSubjectsList", onSetupRow: "getEditListItem",
-	          components: [
-	              {kind: "Item", layoutKind: "VFlexLayout", onclick:"editItemClick", components: [
-	                  {name: "editTitle", kind: "Divider"},
-	                  {name: "editDescription"}
-	              ]}
-	          ]},
-	    {kind: "IconButton", icon:"resources/add.png", onclick:"editAddClick"}
+	        // {kind: "Scroller", flex:1, components: [
+		        {kind: "VirtualRepeater", name: "editSubjectsList", onSetupRow: "getEditListItem",
+			          components: [
+			              {kind: "Item", layoutKind: "VFlexLayout", onclick:"editItemClick", components: [
+			              	  {kind: "Control", layoutKind: "HFlexLayout", components: [
+			              	  	  {kind: "IconButton", flex:1, icon:"resources/del.png", onclick: "editDelClick"},
+			                  	  {name: "editTitle", flex:10, kind: "Divider"},
+			                  ]},
+			                  {name: "editDescription"},
+			              ]}
+			    ]},
+			    {kind: "IconButton", icon:"resources/add.png", onclick:"editAddClick"}
+		   // ]},
     ]},
     
     {kind: "Popup", name:"editItemPopup", components: [
@@ -176,15 +182,16 @@ enyo.kind({
      data.subjects.push({title:"Empty", lecturer:"Nobody", audience:"?"});
      localStorage["day"+this.currentDay] = JSON.stringify(data);
      this.$.editSubjectsList.render();
+     this.$.subjectsList.render();
  },
  
  editItemClick: function(sender, event) {
+ 	this.$.editItemPopup.openAtCenter();
  	data = JSON.parse(localStorage["day"+this.currentDay]).subjects[event.rowIndex];
  	this.$.editSubject.setValue(data.title);
  	this.$.editLecturer.setValue(data.lecturer);
  	this.$.editAudience.setValue(data.audience);
  	this.currentEditingItem = event.rowIndex;
-	this.$.editItemPopup.openAtCenter();
  },
  
  editSubjectChange: function(sender) {
@@ -209,6 +216,17 @@ enyo.kind({
  	localStorage["day"+this.currentDay] = JSON.stringify(data);
     this.$.editSubjectsList.render();
     this.$.subjectsList.render();
+ },
+ 
+ editDelClick: function(sender, event) {
+     if (!localStorage["day"+this.currentDay]) {
+         localStorage["day"+this.currentDay] = "{}";
+     }
+     data = JSON.parse(localStorage["day"+this.currentDay]);
+     data.subjects.splice(event.rowIndex,1);
+     localStorage["day"+this.currentDay] = JSON.stringify(data);
+     this.$.editSubjectsList.render();
+     this.$.subjectsList.render();
  }
 
 });
